@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-app-httpd
+  namespace: openshift-gitops
+spec: 
+  destination: 
+    name: ''
+    namespace: eazytraining
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    directory:
+      recurse: true
+    path: config/overlays/dev
+    repoURL: http://gitlab.eazytraining.lab/boass/eazytraining-config.git
+    targetRevision: HEAD
+    sourceType: Kustomize
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
