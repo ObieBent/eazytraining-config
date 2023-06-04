@@ -1,0 +1,1 @@
+# Eazytraining Config
